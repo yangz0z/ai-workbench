@@ -2,6 +2,7 @@
 
 import datetime as dt
 import hashlib
+import html
 import json
 import math
 import re
@@ -26,6 +27,29 @@ def notion_id(value):
     if not match:
         raise Error('Notion URL 또는 ID 형식을 확인하세요.')
     return str(uuid.UUID(match.group(1)))
+
+
+def table_cell(content):
+    """표 칸 내용. Notion 표 칸은 HTML 태그를 받지 않으므로 서식은 Markdown으로 두고 코드 밖의 <, >, &만 이스케이프"""
+    parts = re.split(r'(`+[^`]*`+)', content.replace('\\|', '|'))
+    for i in range(0, len(parts), 2):
+        parts[i] = html.escape(parts[i], quote=False)
+    return ''.join(parts)
+
+
+def table_markup(tokens):
+    rows = []
+    row = None
+    for token in tokens:
+        if token.type == 'tr_open':
+            row = []
+        elif token.type == 'inline' and row is not None:
+            row.append(table_cell(token.content))
+        elif token.type == 'tr_close':
+            rows.append(row)
+            row = None
+    cells = (''.join(f'<td>{cell}</td>\n' for cell in row) for row in rows)
+    return '<table>\n' + ''.join(f'<tr>\n{row}</tr>\n' for row in cells) + '</table>\n'
 
 
 def convert(source, links=None):
@@ -66,11 +90,7 @@ def convert(source, links=None):
             j = i + 1
             while tokens[j].type != 'table_close':
                 j += 1
-            table = parser.renderer.render(tokens[i:j + 1], parser.options, {})
-            table = table.replace('<thead>', '').replace('</thead>', '').replace('<tbody>', '').replace('</tbody>', '')
-            table = re.sub(r'<th(?: style="[^"]*")?>', '<td>', table).replace('</th>', '</td>')
-            table = re.sub(r'<td style="[^"]*">', '<td>', table)
-            replacements[start] = (end, table)
+            replacements[start] = (end, table_markup(tokens[i:j + 1]))
         for child in token.children or []:
             if child.type == 'html_inline':
                 raise Error('직접 작성한 HTML은 지원하지 않습니다.')

@@ -30,7 +30,19 @@ class ConversionTest(unittest.TestCase):
 
     def test_table_inline_code_keeps_wiki_literal(self):
         _, body, _ = convert('# 제목\n\n| 코드 |\n| --- |\n| `[[그대로]]` |')
-        self.assertIn('<code>[[그대로]]</code>', body)
+        self.assertIn('<td>`[[그대로]]`</td>', body)
+
+    def test_table_cells_use_notion_markdown_not_html_tags(self):
+        # Notion 본문 교체 API는 표 칸 안의 HTML 태그(<code>, <strong> 등)를 거부함
+        _, body, _ = convert('# 제목\n\n| 항목 | 값 |\n| --- | --- |\n| `next_start_at` | **굵게**, *기울임*, [링크](https://example.com) |')
+        self.assertIn('<td>`next_start_at`</td>', body)
+        self.assertIn('<td>**굵게**, *기울임*, [링크](https://example.com)</td>', body)
+        for tag in ('<code>', '<strong>', '<em>', '<a '):
+            self.assertNotIn(tag, body)
+
+    def test_table_cell_escapes_angle_brackets_and_pipes(self):
+        _, body, _ = convert('# 제목\n\n| 식 |\n| --- |\n| a < b \\| c `x<y` |')
+        self.assertIn('<td>a &lt; b | c `x<y`</td>', body)
 
     def test_multiselect_requires_list(self):
         schema = {'이름': {'type': 'title'}, '태그': {'type': 'multi_select', 'multi_select': {'options': [{'name': '개발'}]}}}
