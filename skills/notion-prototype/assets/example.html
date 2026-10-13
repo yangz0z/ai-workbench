@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>행사 신청 · 기획 초안</title>
+<style>
+*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0;background:#f4f6fa;color:#202c40;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}main{max-width:640px;padding:32px 20px;margin:auto}h1{font-size:28px;letter-spacing:-1px;margin:4px 0 24px}h2{font-size:18px;margin:0 0 12px}.tag{font-size:12px;color:#556b8e}.card{padding:24px;border:1px solid #d9e1ec;border-radius:12px;background:#fff;margin-bottom:20px}.summary{background:#edf3ff;border-color:#bcd0f5}.summary strong{font-size:22px;overflow-wrap:anywhere}.notice{padding:10px 12px;background:#fff3d9;color:#775014;border-radius:6px;font-size:14px}label{display:block;font-size:14px;font-weight:600;margin-bottom:18px}input{display:block;width:100%;font:inherit;border:1px solid #bdc9db;border-radius:7px;padding:12px;margin-top:6px}button{font:inherit;padding:11px 17px;border-radius:8px;cursor:pointer;border:1px solid #255ed2;background:#255ed2;color:white}button:hover{filter:brightness(.95)}button:focus-visible,input:focus-visible{outline:3px solid #7dafff;outline-offset:3px}.test-tools{padding:16px;border:1px dashed #8b9bb3;border-radius:8px}.test-tools h2{font-size:13px;color:#51637c}.test-tools button{border:1px dashed #8b9bb3;color:#34465e;background:transparent;font-size:14px}.guide{font-size:13px;color:#586c88;margin-bottom:0}.error{color:#9e3022;font-size:14px}
+</style>
+</head>
+<body><main>
+<span class="tag">클릭형 기획 초안</span><h1>행사 신청</h1>
+<section class="card summary" id="result" aria-live="polite" hidden><h2 id="result-title">신청 내용 확인</h2><strong id="summary"></strong><p class="notice" id="notice" hidden>입력이 바뀌었어요. 신청 내용을 다시 확인해 주세요.</p></section>
+<form class="card" id="form"><label>이름<input id="name" required maxlength="40" placeholder="이름을 입력해 주세요"></label><label>참석 인원<input id="count" required type="number" min="1" max="10" step="1" value="1"></label><p class="error" id="error" role="alert" hidden>이름과 1~10명 사이의 참석 인원을 입력해 주세요.</p><button type="submit">신청 내용 확인</button></form>
+<aside class="test-tools"><h2>테스트 도구 · 실제 화면에는 표시되지 않음</h2><button id="reset" type="button">초기화</button><p class="guide">예시: 인원 1~10명 · 실제 신청·저장 없음 · 새로고침 시 초기화<br>입력 → 확인 → 입력 변경 → 다시 확인 순서로 체험하세요.</p></aside>
+</main>
+<script>
+const el=id=>document.getElementById(id);
+let confirmed=null;
+function inputState(){return {name:el('name').value.trim(),count:Number(el('count').value)};}
+function updateNotice(){
+ if(!confirmed)return;
+ const current=inputState();
+ const changed=current.name!==confirmed.name||current.count!==confirmed.count;
+ el('notice').hidden=!changed;
+ el('result-title').textContent='신청 내용 확인';
+ if(changed)el('result-title').textContent='이전 확인 내용';
+}
+el('form').addEventListener('input',updateNotice);
+el('form').addEventListener('submit',event=>{
+ event.preventDefault();const value=inputState();
+ if(!value.name||!Number.isInteger(value.count)||value.count<1||value.count>10){el('error').hidden=false;return;}
+ confirmed=value;el('error').hidden=true;el('result').hidden=false;
+ el('summary').textContent=value.name+' · '+value.count+'명';updateNotice();
+});
+el('reset').addEventListener('click',()=>{confirmed=null;el('form').reset();el('result').hidden=true;el('error').hidden=true;});
+</script>
+</body></html>
