@@ -26,6 +26,8 @@
 
 [설치부터 첫 게시까지](docs/notion-prototype.md) · [명령과 복구](skills/notion-prototype/references/usage.md) · [체험용 HTML](skills/notion-prototype/assets/example.html)
 
+---
+
 ### markdown-notion
 
 로컬 Markdown 문서를 정해진 Notion 데이터베이스에 게시하고, 수정할 때마다 같은 항목에 반영하는 스킬입니다.
@@ -40,6 +42,8 @@
 현재 macOS, Python 3.11 이상, uv가 필요합니다. Claude Code·Codex의 로컬 스킬로 설치할 수 있습니다.
 
 [설치와 첫 게시](docs/markdown-notion.md) · [명령과 복구](skills/markdown-notion/references/usage.md) · [MCP와의 차이](docs/mcp-comparison.md) · [개발·검증](docs/development.md)
+
+---
 
 ## 라이선스
 
