@@ -2,7 +2,18 @@
 
 개발 업무에 바로 가져다 쓸 수 있는 AI 스킬과 자동화 도구 모음입니다.
 
-## notion-prototype
+## 스킬 목록
+
+| 스킬 | 용도 | 사용 가이드 |
+| --- | --- | --- |
+| [notion-prototype](#notion-prototype) | 채팅 기획을 클릭형 HTML로 만들어 Notion에 공유 | [설치·사용법](docs/notion-prototype.md) |
+| [markdown-notion](#markdown-notion) | 로컬 Markdown을 Notion 데이터베이스에 게시·갱신 | [설치·사용법](docs/markdown-notion.md) |
+
+각 스킬은 독립 설치할 수 있습니다. `markdown-notion`은 페이지 본문 전체를 교체하므로 두 스킬은 별도 페이지에서 사용하고 링크로 연결하세요. 두 스킬 모두 게시에는 macOS·Python 3.11 이상·uv와 Notion 내부 연결이 필요합니다.
+
+## 스킬 상세
+
+### notion-prototype
 
 채팅으로 설명한 화면을 클릭형 HTML 프로토타입으로 만들고 기존 Notion 페이지에 게시하는 스킬입니다. 개발 티켓에서 버튼 위치, 입력 기본값, 처리 전후 상태를 팀원과 직접 눌러보며 확인할 수 있습니다.
 
@@ -15,7 +26,7 @@
 
 [설치부터 첫 게시까지](docs/notion-prototype.md) · [명령과 복구](skills/notion-prototype/references/usage.md) · [체험용 HTML](skills/notion-prototype/assets/example.html)
 
-## markdown-notion
+### markdown-notion
 
 로컬 Markdown 문서를 정해진 Notion 데이터베이스에 게시하고, 수정할 때마다 같은 항목에 반영하는 스킬입니다.
 
@@ -29,15 +40,6 @@
 현재 macOS, Python 3.11 이상, uv가 필요합니다. Claude Code·Codex의 로컬 스킬로 설치할 수 있습니다.
 
 [설치와 첫 게시](docs/markdown-notion.md) · [명령과 복구](skills/markdown-notion/references/usage.md) · [MCP와의 차이](docs/mcp-comparison.md) · [개발·검증](docs/development.md)
-
-## 어떤 스킬을 선택하나요?
-
-| 목적 | 스킬 |
-| --- | --- |
-| 화면·버튼·상태 변화를 직접 확인하는 기획 협업 | `notion-prototype` |
-| 로컬 Markdown을 데이터베이스에 반복 게시 | `markdown-notion` |
-
-각 스킬은 독립 설치할 수 있습니다. `markdown-notion`은 페이지 본문 전체를 교체하므로 두 스킬은 별도 페이지에서 사용하고 링크로 연결하세요. 두 스킬 모두 게시에는 macOS·Python 3.11 이상·uv와 Notion 내부 연결이 필요합니다.
 
 ## 라이선스
 
