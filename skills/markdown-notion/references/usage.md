@@ -2,6 +2,8 @@
 
 공통 도구가 Markdown 문서를 읽어 Notion 데이터베이스에 항목을 만든다. 본문은 페이지 안에, frontmatter는 설정된 데이터베이스 속성에 저장한다. Notion 데이터베이스 안에 데이터 소스가 여러 개면 어느 데이터 소스를 쓸지 명시한다.
 
+경로 예시는 `npx skills add`의 기본 사용자 전역 설치 기준이다. 프로젝트 설치 또는 별도 경로를 사용했다면 실제 설치 위치로 바꾼다.
+
 ## 최초 설정
 
 1. Notion에서 내부 연결을 생성하고 콘텐츠·속성의 조회·삽입·수정에 필요한 권한을 켠다. 사용자·댓글 권한은 필요하지 않다.
@@ -9,7 +11,7 @@
 3. 자신의 터미널에서 토큰을 등록한다. 토큰은 명령어에 붙이지 않고 숨김 입력 프롬프트에 입력한다.
 
 ```sh
-uv run --script ~/ai-workbench/skills/markdown-notion/scripts/notion_publish.py auth
+uv run --script ~/.agents/skills/markdown-notion/scripts/notion_publish.py auth
 ```
 
 토큰은 macOS 키체인에 저장된다. 에이전트에게 입력을 대신 맡기거나 토큰을 채팅에 보내지 않는다. `--profile default`가 기본이며 워크스페이스별 토큰이 필요하면 다른 프로필로 `auth`를 실행한다.
@@ -17,7 +19,7 @@ uv run --script ~/ai-workbench/skills/markdown-notion/scripts/notion_publish.py 
 아래 경로는 설치한 스킬 위치로 바꾼다. `scripts/notion_publish.py` 파일을 지정하며 디렉터리 자체를 실행하지 않는다. 문서 폴더는 미리 존재해야 한다. 값에 토큰은 포함하지 않는다.
 
 ```sh
-notion_publish_script="$HOME/ai-workbench/skills/markdown-notion/scripts/notion_publish.py"
+notion_publish_script="$HOME/.agents/skills/markdown-notion/scripts/notion_publish.py"
 uv run --script "$notion_publish_script" init --root "$HOME/Documents/notes"
 uv run --script "$notion_publish_script" add-target 업무기록 'NOTION_DATABASE_URL'
 uv run --script "$notion_publish_script" schema --target 업무기록
@@ -84,7 +86,7 @@ uv run --script "$notion_publish_script" move 'drafts/문서.md' 'notes/문서.m
 CLI의 `--config-dir`, `--state-dir` 전역 옵션은 명령 이름 앞에 둔다. 테스트·미리보기를 격리할 때 사용할 수 있다. 두 옵션은 설정과 이력의 위치만 바꾸며 키체인 프로필은 공유한다. 기존 게시 폴더를 이동하거나 PC를 바꿀 때는 파일 경로가 달라지므로 이력을 이전하거나 기존 페이지를 recover로 연결해야 중복 생성을 피할 수 있다.
 
 ```sh
-cd ~/ai-workbench/skills/markdown-notion
+cd ~/.agents/skills/markdown-notion
 uv run --with 'PyYAML==6.0.3' --with 'markdown-it-py==4.0.0' --with 'keyring==25.7.0' \
   python -m unittest discover -s tests -v
 ```

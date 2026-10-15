@@ -24,37 +24,49 @@ CSS·JavaScript를 한 파일에 넣으므로 별도 웹 서버를 배포할 필
 
 게시에는 **macOS, Python 3.11 이상, uv**가 필요합니다. 인증을 macOS 키체인에 저장하므로 현재 Linux·Windows에서의 게시를 지원하지 않습니다. HTML 파일 자체는 일반 브라우저에서 열 수 있습니다.
 
-터미널에서 저장소를 내려받습니다. 이미 복제했다면 그 저장소에서 `git pull --ff-only`로 갱신하세요.
+Node.js와 npm에 포함된 `npx`가 필요합니다. 아래 명령으로 실행 환경을 확인합니다.
 
 ```sh
-git clone https://github.com/yangz0z/ai-workbench.git "$HOME/ai-workbench"
+node --version
+npx skills --help
 ```
 
-사용하는 AI 도구에 맞춰 연결합니다. 같은 이름의 폴더가 이미 있으면 기존 설치를 확인하고 덮어쓰지 마세요.
-
-Claude Code:
+원하는 스킬만 사용자 전역에 설치합니다. 저장소를 직접 클론할 필요는 없습니다.
 
 ```sh
-mkdir -p "$HOME/.claude/skills"
-ln -s "$HOME/ai-workbench/skills/notion-prototype" "$HOME/.claude/skills/notion-prototype"
+npx skills add yangz0z/ai-workbench --skill notion-prototype -g
 ```
 
-Codex:
+설치 과정에서 Claude Code·Codex 등 사용할 AI 도구를 선택합니다. 도구까지 지정하려면 아래 중 하나를 실행합니다.
 
 ```sh
-mkdir -p "$HOME/.agents/skills"
-ln -s "$HOME/ai-workbench/skills/notion-prototype" "$HOME/.agents/skills/notion-prototype"
+# Claude Code
+npx skills add yangz0z/ai-workbench --skill notion-prototype -g --agent claude-code
+
+# Codex
+npx skills add yangz0z/ai-workbench --skill notion-prototype -g --agent codex
 ```
 
-다른 위치에 복제했다면 위 경로도 맞춰 바꿉니다. 두 도구에서 모두 사용하려면 둘 다 연결하세요. 스킬이 보이지 않으면 AI 도구에서 새 세션을 시작합니다. 이 스킬만 설치해도 동작하며 `markdown-notion` 설치는 필요하지 않습니다.
+두 도구에 함께 설치하려면 `--agent claude-code codex`로 지정합니다. `-g`를 빼면 현재 프로젝트에만 설치합니다. 기존에 같은 이름의 개인 스킬이 있다면 덮어쓰기 전에 내용을 확인하세요. 설치 후 스킬이 보이지 않으면 새 세션을 시작합니다.
+
+처음 실행할 때 Skills CLI 다운로드를 물을 수 있으며 인터넷 연결이 필요합니다. CLI가 저장소를 임시로 가져와 선택한 스킬 폴더를 설치합니다. 전체 저장소를 작업 폴더에 보관하거나 직접 심볼릭 링크를 만들 필요는 없습니다.
+
+설치 확인과 업데이트:
+
+```sh
+npx skills list -g
+npx skills update notion-prototype -g
+```
+
+이 가이드의 파일 경로 예시는 기본 전역 설치 위치인 `~/.agents/skills/notion-prototype`를 기준으로 합니다. 프로젝트 설치라면 프로젝트의 `.agents/skills/notion-prototype`로 바꾸고, 별도 경로를 사용했다면 설치 결과에 나온 경로를 따릅니다. [Skills CLI 사용법](https://github.com/vercel-labs/skills)
+
+이 스킬만 설치해도 동작하며 `markdown-notion` 설치는 필요하지 않습니다.
 
 ## 2. 게시 전에 화면부터 체험
 
 Notion 인증 없이도 동봉된 예제를 열어볼 수 있습니다.
 
-```sh
-open "$HOME/ai-workbench/skills/notion-prototype/assets/example.html"
-```
+파일 탐색기에서 `~/.agents/skills/notion-prototype/assets/example.html`을 찾아 더블클릭합니다.
 
 예제는 신청 내용을 입력하고 확인 버튼을 누르면 요약을 표시합니다. 입력을 바꾸면 이전 결과와 재확인 안내를 유지하고, 버튼을 다시 눌러야 결과가 바뀝니다. 점선 영역의 초기화 버튼은 테스트용입니다.
 
@@ -82,7 +94,7 @@ notion-prototype으로 행사 신청 화면을 만들어줘.
 **본인의 터미널**에서 다음 명령을 실행합니다. AI가 실행한 터미널이나 채팅으로 토큰을 보내지 마세요.
 
 ```sh
-prototype_cli="$HOME/ai-workbench/skills/notion-prototype/scripts/notion_prototype.py"
+prototype_cli="$HOME/.agents/skills/notion-prototype/scripts/notion_prototype.py"
 uv run --script "$prototype_cli" auth
 ```
 

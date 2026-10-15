@@ -1,9 +1,9 @@
 # 명령과 복구
 
-게시 환경은 macOS, Python 3.11 이상, uv다. `scripts/notion_prototype.py`는 이 스킬 폴더 기준으로 찾는다. 최초 사용 안내는 저장소의 `docs/notion-prototype.md`에 있다.
+게시 환경은 macOS, Python 3.11 이상, uv다. `scripts/notion_prototype.py`는 이 스킬 폴더 기준으로 찾는다. 경로 예시는 기본 사용자 전역 설치 기준이며 프로젝트 설치라면 실제 위치로 바꾼다. 최초 사용 안내는 [설치 가이드](https://github.com/yangz0z/ai-workbench/blob/main/docs/notion-prototype.md)에 있다.
 
 ```sh
-prototype_cli="$HOME/ai-workbench/skills/notion-prototype/scripts/notion_prototype.py"
+prototype_cli="$HOME/.agents/skills/notion-prototype/scripts/notion_prototype.py"
 uv run --script "$prototype_cli" --help
 ```
 

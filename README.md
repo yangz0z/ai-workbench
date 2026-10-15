@@ -12,6 +12,20 @@
 
 각 스킬은 독립 설치할 수 있습니다. `markdown-notion`은 페이지 본문 전체를 교체하므로 두 스킬은 별도 페이지에서 사용하고 링크로 연결하세요. Notion 연동 두 스킬의 게시에는 macOS·Python 3.11 이상·uv와 Notion 내부 연결이 필요합니다.
 
+## 설치
+
+Node.js와 npm에 포함된 `npx`가 필요합니다. `npx skills --help`가 실행되면 아래에서 필요한 스킬 하나를 골라 설치하세요.
+
+```sh
+npx skills add yangz0z/ai-workbench --skill web-artifacts -g
+npx skills add yangz0z/ai-workbench --skill notion-prototype -g
+npx skills add yangz0z/ai-workbench --skill markdown-notion -g
+```
+
+설치 과정에서 사용할 AI 도구를 선택합니다. `--agent claude-code` 또는 `--agent codex`로 지정할 수도 있습니다. `-g`는 사용자 전역 설치이며, 빼면 현재 프로젝트에만 설치합니다. 저장소를 직접 클론할 필요 없이 CLI가 선택한 스킬을 가져옵니다.
+
+`npx skills list -g`로 설치 상태를 확인하고, `npx skills update web-artifacts -g`처럼 스킬 이름을 지정해 갱신합니다. Notion 스킬의 실행 환경과 인증 준비는 각 가이드를 따릅니다.
+
 ## 스킬 상세
 
 ### web-artifacts
