@@ -55,7 +55,7 @@ npx skills update {스킬명} -g
 - **일관된 UI와 조작**: 무채색 UI, 연노랑 현재 단계, 연결 경로 강조, 고정 단계 버튼과 전체 스키마 팝업 규칙을 제공합니다.
 - **로컬 파일로 전달**: 단일 HTML과 수정용 소스를 생성합니다. 게시·인증 없이 브라우저에서 열 수 있습니다.
 
-[설치·사용법](docs/web-artifacts.md) · [제작 스킬](skills/web-artifacts/SKILL.md) · [UI 테마](skills/web-artifacts/assets/theme.css)
+[설치·사용법](docs/web-artifacts.md) · [제작 스킬](skills/web-artifacts/SKILL.md) · [UI 테마](skills/web-artifacts/assets/theme.css) · [샘플 보기](https://yangz0z.github.io/ai-workbench/)
 
 ---
 
