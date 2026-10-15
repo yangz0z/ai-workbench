@@ -1,0 +1,71 @@
+/* 무채색 기본 토큰 */
+:root {
+  --artifact-bg: #f7f7f7;
+  --artifact-surface: #ffffff;
+  --artifact-surface-subtle: #f1f1f1;
+  --artifact-text: #202020;
+  --artifact-text-secondary: #606060;
+  --artifact-border: #dddddd;
+  --artifact-line: #777777;
+  --artifact-selected-bg: #fff6cf;
+  --artifact-selected-line: #aaaaaa;
+  --artifact-action-bg: #252525;
+  --artifact-action-text: #ffffff;
+  --artifact-radius: 6px;
+  --artifact-node-radius: 13px;
+  --artifact-stroke-width: 1.5;
+  --artifact-inactive-opacity: 0.22;
+  --artifact-font: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  /* 상태 배지와 의미 있는 필터 칩 전용 */
+  --artifact-success: #25634b;
+  --artifact-success-bg: #edf6f0;
+  --artifact-progress: #2856a3;
+  --artifact-progress-bg: #edf2fa;
+  --artifact-warning: #795411;
+  --artifact-warning-bg: #fbf3e3;
+  --artifact-error: #a13535;
+  --artifact-error-bg: #faeeee;
+}
+
+.artifact-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.25em 0.65em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--artifact-text-secondary);
+  background: var(--artifact-surface-subtle);
+}
+.artifact-status[data-status='success'] { color: var(--artifact-success); background: var(--artifact-success-bg); }
+.artifact-status[data-status='progress'] { color: var(--artifact-progress); background: var(--artifact-progress-bg); }
+.artifact-status[data-status='warning'] { color: var(--artifact-warning); background: var(--artifact-warning-bg); }
+.artifact-status[data-status='error'] { color: var(--artifact-error); background: var(--artifact-error-bg); }
+.artifact-filter[aria-pressed='true'] { color: var(--artifact-progress); background: var(--artifact-progress-bg); }
+.artifact-diagram [aria-selected='true'] { fill: var(--artifact-selected-bg); stroke: var(--artifact-selected-line); }
+.artifact :focus-visible { outline: 2px solid var(--artifact-text); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .artifact *, .artifact *::before, .artifact *::after { animation: none !important; transition: none !important; }
+}
+
+/* SVG의 도형·선·라벨을 묶은 그룹에 경로 속성 지정 */
+.artifact-diagram [data-route='inactive'] { opacity: var(--artifact-inactive-opacity); }
+.artifact-diagram [data-route='active'],
+.artifact-diagram [data-current='true'],
+.artifact-diagram [data-route='inactive']:focus-visible { opacity: 1; }
+.artifact-diagram .node-shape {
+  stroke-width: var(--artifact-stroke-width);
+  stroke-linejoin: round;
+}
+.artifact-diagram [data-current='true'] > .node-shape {
+  fill: var(--artifact-selected-bg);
+  stroke: var(--artifact-selected-line);
+}
+.artifact-diagram .edge-path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.artifact-stepper { display: flex; align-items: center; gap: 6px; }
+.artifact-stepper .step-count { min-width: 5ch; font-variant-numeric: tabular-nums; }

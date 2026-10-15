@@ -1,0 +1,4 @@
+interface:
+  display_name: "웹 아티팩트"
+  short_description: "코드에 근거한 핵심 설계와 흐름을 무채색 인터랙티브 HTML로 제작"
+  default_prompt: "$web-artifacts로 이 프로젝트의 핵심 설계를 코드에서 확인하고, 시나리오 경로를 탐색하는 무채색 모던 HTML로 만들어줘."

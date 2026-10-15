@@ -6,12 +6,27 @@
 
 | 스킬 | 용도 | 사용 가이드 |
 | --- | --- | --- |
+| [web-artifacts](#web-artifacts) | 코드에 근거한 설계·흐름을 인터랙티브 HTML로 제작 | [설치·사용법](docs/web-artifacts.md) |
 | [notion-prototype](#notion-prototype) | 채팅 기획을 클릭형 HTML로 만들어 Notion에 공유 | [설치·사용법](docs/notion-prototype.md) |
 | [markdown-notion](#markdown-notion) | 로컬 Markdown을 Notion 데이터베이스에 게시·갱신 | [설치·사용법](docs/markdown-notion.md) |
 
-각 스킬은 독립 설치할 수 있습니다. `markdown-notion`은 페이지 본문 전체를 교체하므로 두 스킬은 별도 페이지에서 사용하고 링크로 연결하세요. 두 스킬 모두 게시에는 macOS·Python 3.11 이상·uv와 Notion 내부 연결이 필요합니다.
+각 스킬은 독립 설치할 수 있습니다. `markdown-notion`은 페이지 본문 전체를 교체하므로 두 스킬은 별도 페이지에서 사용하고 링크로 연결하세요. Notion 연동 두 스킬의 게시에는 macOS·Python 3.11 이상·uv와 Notion 내부 연결이 필요합니다.
 
 ## 스킬 상세
+
+### web-artifacts
+
+프로젝트의 코드·스키마·테스트를 읽어 핵심 설계를 도식 중심의 인터랙티브 HTML로 만드는 스킬입니다. 큰 도식과 짧은 상세 패널로 구성하며, 선택한 노드의 연결 관계나 정상·실패 시나리오를 직접 따라갈 수 있습니다.
+
+> “web-artifacts로 이 프로젝트의 핵심 설계를 HTML로 만들어줘. 코드와 일치하는 아키텍처와 주요 처리 흐름을 보여줘.”
+
+- **코드에 근거한 설계 설명**: 아키텍처·ERD·시퀀스·상태 전이 중 설명에 필요한 도식을 선택합니다.
+- **일관된 UI와 조작**: 무채색 UI, 연노랑 현재 단계, 연결 경로 강조, 고정 단계 버튼과 전체 스키마 팝업 규칙을 제공합니다.
+- **로컬 파일로 전달**: 단일 HTML과 수정용 소스를 생성합니다. 게시·인증 없이 브라우저에서 열 수 있습니다.
+
+[설치·사용법](docs/web-artifacts.md) · [제작 스킬](skills/web-artifacts/SKILL.md) · [UI 테마](skills/web-artifacts/assets/theme.css)
+
+---
 
 ### notion-prototype
 
