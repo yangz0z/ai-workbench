@@ -33,7 +33,9 @@ CSS·JavaScript를 한 파일에 넣으므로 별도 웹 서버를 배포할 필
 
 ## 2. 게시 전에 화면부터 체험
 
-Notion 인증 없이도 동봉된 예제를 열어볼 수 있습니다.
+[브라우저에서 체험하기](https://yangz0z.github.io/ai-workbench/notion-prototype/)에서 설치·Notion 인증 없이 예제를 눌러볼 수 있습니다. 실제 신청이나 저장은 하지 않습니다.
+
+로컬 파일로 열 수도 있습니다.
 
 파일 탐색기에서 `~/.agents/skills/notion-prototype/assets/example.html`을 찾아 더블클릭합니다.
 

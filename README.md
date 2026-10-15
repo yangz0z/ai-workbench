@@ -70,7 +70,7 @@ npx skills update {스킬명} -g
 - **Notion 안에서 체험**: HTML 파일을 업로드하므로 별도 웹 호스팅이 필요하지 않습니다.
 - **해당 HTML만 갱신**: 페이지별 연결 이력, 같은 파일 재게시 생략, 원격 변경 확인과 중간 실패 복구를 제공합니다.
 
-[설치부터 첫 게시까지](docs/notion-prototype.md) · [명령과 복구](skills/notion-prototype/references/usage.md) · [체험용 HTML](skills/notion-prototype/assets/example.html)
+[설치부터 첫 게시까지](docs/notion-prototype.md) · [명령과 복구](skills/notion-prototype/references/usage.md) · [체험하기](https://yangz0z.github.io/ai-workbench/notion-prototype/) · [HTML 원본](skills/notion-prototype/assets/example.html)
 
 ---
 

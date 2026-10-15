@@ -1,9 +1,10 @@
-name: Publish artifact sample
+name: Publish skill samples
 on:
   push:
     branches: [main]
     paths:
       - skills/web-artifacts/assets/example.html
+      - skills/notion-prototype/assets/example.html
       - .github/workflows/sample-pages.yml
   workflow_dispatch:
 permissions:
@@ -25,10 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - name: Prepare sample only
+      - name: Prepare samples only
         run: |
-          mkdir -p _site
+          mkdir -p _site/notion-prototype
           cp skills/web-artifacts/assets/example.html _site/index.html
+          cp skills/notion-prototype/assets/example.html _site/notion-prototype/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
