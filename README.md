@@ -14,17 +14,34 @@
 
 ## 설치
 
-Node.js와 npm에 포함된 `npx`가 필요합니다. `npx skills --help`가 실행되면 아래에서 필요한 스킬 하나를 골라 설치하세요.
+Node.js와 npm에 포함된 `npx`가 필요합니다. `node --version`과 `npx skills --help`로 실행 환경을 확인하세요.
+
+`{스킬명}`을 위 목록에 있는 이름으로 바꿔 실행합니다. 예를 들어 `web-artifacts`를 설치하려면 `{스킬명}` 부분을 중괄호 없이 `web-artifacts`로 바꿉니다.
 
 ```sh
-npx skills add yangz0z/ai-workbench --skill web-artifacts -g
-npx skills add yangz0z/ai-workbench --skill notion-prototype -g
-npx skills add yangz0z/ai-workbench --skill markdown-notion -g
+npx skills add yangz0z/ai-workbench --skill {스킬명} -g
 ```
 
-설치 과정에서 사용할 AI 도구를 선택합니다. `--agent claude-code` 또는 `--agent codex`로 지정할 수도 있습니다. `-g`는 사용자 전역 설치이며, 빼면 현재 프로젝트에만 설치합니다. 저장소를 직접 클론할 필요 없이 CLI가 선택한 스킬을 가져옵니다.
+**Claude Code와 Codex 두 도구에 함께 설치하려면** 다음 명령을 사용합니다. 같은 스킬을 두 도구에서 사용할 수 있도록 한 번에 설치합니다.
 
-`npx skills list -g`로 설치 상태를 확인하고, `npx skills update web-artifacts -g`처럼 스킬 이름을 지정해 갱신합니다. Notion 스킬의 실행 환경과 인증 준비는 각 가이드를 따릅니다.
+```sh
+npx skills add yangz0z/ai-workbench --skill {스킬명} -g --agent claude-code codex
+```
+
+- `--agent`를 생략하면 설치 과정에서 사용할 AI 도구를 선택합니다. 한 도구만 지정하려면 `--agent claude-code` 또는 `--agent codex`를 사용합니다.
+- `-g`는 사용자 전역 설치이며, 빼면 현재 프로젝트에만 설치합니다.
+- 저장소를 직접 클론할 필요는 없습니다. CLI가 저장소를 임시로 가져와 선택한 스킬을 설치합니다. 처음 실행할 때 CLI 다운로드를 물을 수 있으며 인터넷 연결이 필요합니다.
+- 기존에 같은 이름의 스킬이 있으면 덮어쓰기 전에 내용을 확인하세요. 설치 후 스킬이 보이지 않으면 새 세션을 시작합니다.
+- Notion 스킬의 실행 환경과 인증 준비는 각 사용 가이드를 따릅니다.
+
+설치 확인과 업데이트에도 같은 스킬 이름을 사용합니다.
+
+```sh
+npx skills list -g
+npx skills update {스킬명} -g
+```
+
+가이드의 실행 파일 경로는 기본 전역 설치 위치인 `~/.agents/skills/{스킬명}`을 기준으로 합니다. 프로젝트 설치라면 프로젝트의 `.agents/skills/{스킬명}`으로 바꾸고, 별도 경로를 사용했다면 설치 결과에 나온 경로를 따릅니다. [Skills CLI 사용법](https://github.com/vercel-labs/skills)
 
 ## 스킬 상세
 

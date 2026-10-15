@@ -20,47 +20,16 @@ CSS·JavaScript를 한 파일에 넣으므로 별도 웹 서버를 배포할 필
 
 이 결과물은 기획 검토용입니다. 실제 로그인·데이터 저장·송금·서버 처리를 구현한 서비스가 아닙니다. 기본적으로 예시 데이터를 사용하고 새로고침하면 초기화합니다. 초기화·데이터 주입 같은 테스트 버튼은 점선 영역에 모아 실제 제품 버튼과 구분합니다.
 
-## 1. 스킬 설치
+## 1. 실행 환경
 
 게시에는 **macOS, Python 3.11 이상, uv**가 필요합니다. 인증을 macOS 키체인에 저장하므로 현재 Linux·Windows에서의 게시를 지원하지 않습니다. HTML 파일 자체는 일반 브라우저에서 열 수 있습니다.
 
-Node.js와 npm에 포함된 `npx`가 필요합니다. 아래 명령으로 실행 환경을 확인합니다.
+설치는 [README의 공통 설치 안내](../README.md#설치)에서 `notion-prototype`을 선택합니다.
 
-```sh
-node --version
-npx skills --help
-```
-
-원하는 스킬만 사용자 전역에 설치합니다. 저장소를 직접 클론할 필요는 없습니다.
-
-```sh
-npx skills add yangz0z/ai-workbench --skill notion-prototype -g
-```
-
-설치 과정에서 Claude Code·Codex 등 사용할 AI 도구를 선택합니다. 도구까지 지정하려면 아래 중 하나를 실행합니다.
-
-```sh
-# Claude Code
-npx skills add yangz0z/ai-workbench --skill notion-prototype -g --agent claude-code
-
-# Codex
-npx skills add yangz0z/ai-workbench --skill notion-prototype -g --agent codex
-```
-
-두 도구에 함께 설치하려면 `--agent claude-code codex`로 지정합니다. `-g`를 빼면 현재 프로젝트에만 설치합니다. 기존에 같은 이름의 개인 스킬이 있다면 덮어쓰기 전에 내용을 확인하세요. 설치 후 스킬이 보이지 않으면 새 세션을 시작합니다.
-
-처음 실행할 때 Skills CLI 다운로드를 물을 수 있으며 인터넷 연결이 필요합니다. CLI가 저장소를 임시로 가져와 선택한 스킬 폴더를 설치합니다. 전체 저장소를 작업 폴더에 보관하거나 직접 심볼릭 링크를 만들 필요는 없습니다.
-
-설치 확인과 업데이트:
-
-```sh
-npx skills list -g
-npx skills update notion-prototype -g
-```
-
-이 가이드의 파일 경로 예시는 기본 전역 설치 위치인 `~/.agents/skills/notion-prototype`를 기준으로 합니다. 프로젝트 설치라면 프로젝트의 `.agents/skills/notion-prototype`로 바꾸고, 별도 경로를 사용했다면 설치 결과에 나온 경로를 따릅니다. [Skills CLI 사용법](https://github.com/vercel-labs/skills)
 
 이 스킬만 설치해도 동작하며 `markdown-notion` 설치는 필요하지 않습니다.
+
+아래 파일 경로는 사용자 전역 설치 기준입니다. 프로젝트 설치라면 실제 설치 경로로 바꿉니다.
 
 ## 2. 게시 전에 화면부터 체험
 

@@ -2,43 +2,10 @@
 
 `web-artifacts`는 프로젝트의 코드·스키마·테스트를 바탕으로 설계를 설명하는 인터랙티브 HTML을 만드는 AI 스킬입니다. 실제 결과물은 Claude Code·Codex 같은 AI 도구가 작성합니다. 고정된 프로젝트 화면이나 자동 게시 도구가 아니라, 무엇을 설명할지와 어떻게 표현하고 검증할지를 정한 제작 지침입니다.
 
-## 설치
+## 실행 환경
 
-Node.js와 npm에 포함된 `npx`가 필요합니다. 아래 명령으로 실행 환경을 확인합니다.
+설치는 [README의 공통 설치 안내](../README.md#설치)에서 `web-artifacts`을 선택합니다.
 
-```sh
-node --version
-npx skills --help
-```
-
-원하는 스킬만 사용자 전역에 설치합니다. 저장소를 직접 클론할 필요는 없습니다.
-
-```sh
-npx skills add yangz0z/ai-workbench --skill web-artifacts -g
-```
-
-설치 과정에서 Claude Code·Codex 등 사용할 AI 도구를 선택합니다. 도구까지 지정하려면 아래 중 하나를 실행합니다.
-
-```sh
-# Claude Code
-npx skills add yangz0z/ai-workbench --skill web-artifacts -g --agent claude-code
-
-# Codex
-npx skills add yangz0z/ai-workbench --skill web-artifacts -g --agent codex
-```
-
-두 도구에 함께 설치하려면 `--agent claude-code codex`로 지정합니다. `-g`를 빼면 현재 프로젝트에만 설치합니다. 기존에 같은 이름의 개인 스킬이 있다면 덮어쓰기 전에 내용을 확인하세요. 설치 후 스킬이 보이지 않으면 새 세션을 시작합니다.
-
-처음 실행할 때 Skills CLI 다운로드를 물을 수 있으며 인터넷 연결이 필요합니다. CLI가 저장소를 임시로 가져와 선택한 스킬 폴더를 설치합니다. 전체 저장소를 작업 폴더에 보관하거나 직접 심볼릭 링크를 만들 필요는 없습니다.
-
-설치 확인과 업데이트:
-
-```sh
-npx skills list -g
-npx skills update web-artifacts -g
-```
-
-이 가이드의 파일 경로 예시는 기본 전역 설치 위치인 `~/.agents/skills/web-artifacts`를 기준으로 합니다. 프로젝트 설치라면 프로젝트의 `.agents/skills/web-artifacts`로 바꾸고, 별도 경로를 사용했다면 설치 결과에 나온 경로를 따릅니다. [Skills CLI 사용법](https://github.com/vercel-labs/skills)
 
 다른 스킬, Notion 계정, 개인 설정 저장소는 필요하지 않습니다. React 기반 제작에는 Node.js와 패키지 매니저가 필요하고, 검증에는 Playwright 같은 헤드리스 브라우저 도구가 필요합니다. 간단한 도식은 빌드 없이 HTML/CSS/JavaScript로 작성할 수 있습니다. 제작 시 패키지 설치에는 네트워크가 필요할 수 있지만, 완성 HTML은 오프라인에서 동작하도록 검증합니다.
 

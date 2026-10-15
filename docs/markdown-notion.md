@@ -2,45 +2,14 @@
 
 `markdown-notion`은 로컬 문서를 원본으로 두고 Notion 데이터베이스에 반복 게시하는 스킬입니다. AI에게 파일과 목적지를 알려주면 스크립트가 본문 변환·속성 검증·생성·갱신을 처리합니다.
 
-## 설치
+## 실행 환경
 
 macOS, Python 3.11 이상, [uv](https://docs.astral.sh/uv/getting-started/installation/)가 필요합니다. 인증은 macOS 키체인을 사용하므로 Linux·Windows는 현재 지원하지 않습니다. Python 의존성은 스크립트에 고정되어 있으며 uv가 준비합니다.
 
-Node.js와 npm에 포함된 `npx`가 필요합니다. 아래 명령으로 실행 환경을 확인합니다.
+설치는 [README의 공통 설치 안내](../README.md#설치)에서 `markdown-notion`을 선택합니다.
 
-```sh
-node --version
-npx skills --help
-```
 
-원하는 스킬만 사용자 전역에 설치합니다. 저장소를 직접 클론할 필요는 없습니다.
-
-```sh
-npx skills add yangz0z/ai-workbench --skill markdown-notion -g
-```
-
-설치 과정에서 Claude Code·Codex 등 사용할 AI 도구를 선택합니다. 도구까지 지정하려면 아래 중 하나를 실행합니다.
-
-```sh
-# Claude Code
-npx skills add yangz0z/ai-workbench --skill markdown-notion -g --agent claude-code
-
-# Codex
-npx skills add yangz0z/ai-workbench --skill markdown-notion -g --agent codex
-```
-
-두 도구에 함께 설치하려면 `--agent claude-code codex`로 지정합니다. `-g`를 빼면 현재 프로젝트에만 설치합니다. 기존에 같은 이름의 개인 스킬이 있다면 덮어쓰기 전에 내용을 확인하세요. 설치 후 스킬이 보이지 않으면 새 세션을 시작합니다.
-
-처음 실행할 때 Skills CLI 다운로드를 물을 수 있으며 인터넷 연결이 필요합니다. CLI가 저장소를 임시로 가져와 선택한 스킬 폴더를 설치합니다. 전체 저장소를 작업 폴더에 보관하거나 직접 심볼릭 링크를 만들 필요는 없습니다.
-
-설치 확인과 업데이트:
-
-```sh
-npx skills list -g
-npx skills update markdown-notion -g
-```
-
-이 가이드의 파일 경로 예시는 기본 전역 설치 위치인 `~/.agents/skills/markdown-notion`를 기준으로 합니다. 프로젝트 설치라면 프로젝트의 `.agents/skills/markdown-notion`로 바꾸고, 별도 경로를 사용했다면 설치 결과에 나온 경로를 따릅니다. [Skills CLI 사용법](https://github.com/vercel-labs/skills)
+아래 파일 경로는 사용자 전역 설치 기준입니다. 프로젝트 설치라면 실제 설치 경로로 바꿉니다.
 
 ## Notion 연결 준비
 
